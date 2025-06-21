@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}News Curator - Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-envelope me-2"></i>Subscribe to Newsletter
+                </h2>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Get curated news articles from reliable sources delivered to your inbox daily.</p>
+                
+                <form method="POST" action="{{ url_for('subscribe') }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Name (Optional)</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    
+                    {% if topics %}
+                    <div class="mb-3">
+                        <label class="form-label">Topics of Interest</label>
+                        <div class="row">
+                            {% for topic in topics %}
+                            <div class="col-md-4 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ topic.name }}" 
+                                           id="topic{{ topic.id }}" name="topics" checked>
+                                    <label class="form-check-label" for="topic{{ topic.id }}">
+                                        {{ topic.name }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-paper-plane me-2"></i>Newsletter Management
+                </h3>
+                <div class="btn-group">
+                    <form method="POST" action="{{ url_for('send_newsletter') }}" class="d-inline">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-send me-2"></i>Send Newsletter Now
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">
+                    Newsletters are automatically sent daily at 8:00 AM. You can also send one manually using the button above.
+                </p>
+                
+                {% if recent_newsletters %}
+                <h5>Recent Newsletters</h5>
+                <div class="list-group">
+                    {% for newsletter in recent_newsletters %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1">{{ newsletter.subject }}</h6>
+                            <small class="text-muted">{{ newsletter.sent_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                        </div>
+                        <p class="mb-1">
+                            <span class="badge bg-{{ 'success' if newsletter.status == 'sent' else 'danger' }}">
+                                {{ newsletter.status.title() }}
+                            </span>
+                            Sent to: {{ newsletter.subscriber.email }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted">No newsletters sent yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4 class="card-title mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>Statistics
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <h2 class="text-primary">{{ subscribers_count }}</h2>
+                    <p class="text-muted">Active Subscribers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">
+                    <i class="fas fa-info-circle me-2"></i>How it Works
+                </h4>
+            </div>
+            <div class="card-body">
+                <ol class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-search text-primary me-2"></i>
+                        <strong>Curate:</strong> We fetch the latest articles from reliable news sources
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-filter text-primary me-2"></i>
+                        <strong>Filter:</strong> Articles are filtered by quality and categorized by topics
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <strong>Deliver:</strong> 3 best articles from different topics are sent to your inbox
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

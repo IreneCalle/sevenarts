@@ -1,0 +1,97 @@
+/* Custom styles for News Curator */
+
+.newsletter-preview {
+    background-color: var(--bs-gray-100);
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+}
+
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.form-control, .form-select {
+    border-radius: 0.375rem;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+/* Loading spinner */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Newsletter preview specific styles */
+.newsletter-preview .card {
+    border-left: 4px solid var(--bs-primary);
+}
+
+.newsletter-preview img {
+    max-height: 150px;
+    object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .newsletter-preview {
+        padding: 1rem;
+    }
+    
+    .newsletter-preview .card-body .row {
+        flex-direction: column;
+    }
+    
+    .newsletter-preview img {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bs-gray-200);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-gray-400);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-gray-500);
+}

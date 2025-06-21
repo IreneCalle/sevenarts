@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Daily News Digest</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #495057;
+        }
+        .article {
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+            padding-left: 20px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .article-topic {
+            background-color: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .article-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #212529;
+        }
+        .article-description {
+            color: #6c757d;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .article-meta {
+            font-size: 14px;
+            color: #868e96;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            display: inline-block;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .read-more:hover {
+            background-color: #5a6fd8;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .unsubscribe {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #868e96;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .article {
+                padding: 15px;
+            }
+            .article-title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📰 Your Daily News Digest</h1>
+            <p>Curated articles from reliable sources</p>
+        </div>
+        
+        <div class="content">
+            {% if subscriber_name %}
+            <div class="greeting">
+                Hello {{ subscriber_name }}! 👋
+            </div>
+            {% else %}
+            <div class="greeting">
+                Hello! 👋
+            </div>
+            {% endif %}
+            
+            <p style="margin-bottom: 30px; color: #495057;">
+                Here are today's top 3 curated articles from different topics, carefully selected from reliable news sources:
+            </p>
+            
+            {% for article in articles %}
+            <div class="article">
+                <div class="article-topic">{{ article.topic }}</div>
+                <div class="article-title">{{ article.title }}</div>
+                <div class="article-description">{{ article.description }}</div>
+                <div class="article-meta">
+                    📰 {{ article.source }} • 🕐 {{ article.published_date }}
+                </div>
+                <a href="{{ article.url }}" class="read-more" target="_blank">Read Full Article →</a>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="footer">
+            <p>
+                ❤️ Thanks for reading! Stay informed and have a great day.
+            </p>
+            <p>
+                <a href="http://localhost:5000">Manage your subscription</a> • 
+                <a href="{{ unsubscribe_url }}">Unsubscribe</a>
+            </p>
+            <div class="unsubscribe">
+                You're receiving this because you subscribed to our newsletter.
+                <br>News Curator • Curated news delivered daily
+            </div>
+        </div>
+    </div>
+</body>
+</html>
