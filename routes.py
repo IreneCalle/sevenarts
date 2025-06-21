@@ -26,7 +26,7 @@ def subscribe():
     selected_art_forms = request.form.getlist('art_forms')
     
     if not email:
-        flash('Email is required, culture vulture!', 'error')
+        flash('Come on, gorgeous - we need your email to deliver the goods!', 'error')
         return redirect(url_for('index'))
     
     # Check if subscriber already exists
@@ -34,11 +34,11 @@ def subscribe():
     if existing_subscriber:
         existing_subscriber.art_forms = selected_art_forms
         existing_subscriber.active = True
-        flash('Welcome back! Your art preferences have been updated perfectly.', 'success')
+        flash('Look who\'s back for more! Your artistic cravings have been updated.', 'success')
     else:
         subscriber = Subscriber(email=email, name=name, art_forms=selected_art_forms)
         db.session.add(subscriber)
-        flash('Fantastic! You\'re now part of our cultured community.', 'success')
+        flash('Welcome to the dark side, culture vulture! Your artistic addiction starts now.', 'success')
     
     db.session.commit()
     return redirect(url_for('index'))
@@ -108,7 +108,7 @@ def send_newsletter():
         for subscriber in subscribers:
             try:
                 # Send email
-                subject = f"Your SevenArts Cultural Digest - Fresh Discoveries"
+                subject = f"🔥 Your SevenArts Fix - Artistic Overload Incoming"
                 email_service.send_newsletter(subscriber.email, subject, articles, subscriber.name)
                 
                 # Record the sent newsletter
@@ -132,7 +132,7 @@ def send_newsletter():
                 db.session.add(newsletter)
         
         db.session.commit()
-        flash(f'Cultural digest sent to {success_count} art lovers!', 'success')
+        flash(f'Artistic bombs dropped to {success_count} hungry culture vultures!', 'success')
         
     except Exception as e:
         logging.error(f"Error sending newsletter: {str(e)}")

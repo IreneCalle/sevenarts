@@ -134,4 +134,4 @@ The application follows a modular Flask architecture with the following key comp
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language with cultural flair ("Hi culture vulture! Lovely to see you again").
+Preferred communication style: Sexy, crispy copy with cultural edge. Think "culture vulture," "artistic addiction," "creative soul purr," and "artistic overload." Make it irresistible and slightly edgy.

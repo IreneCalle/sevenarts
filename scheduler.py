@@ -35,7 +35,7 @@ def send_scheduled_newsletter():
             success_count = 0
             for subscriber in subscribers:
                 try:
-                    subject = f"Your SevenArts Cultural Digest - Fresh Discoveries"
+                    subject = f"🔥 Your SevenArts Fix - Artistic Overload Incoming"
                     email_service.send_newsletter(subscriber.email, subject, articles, subscriber.name)
                     success_count += 1
                     

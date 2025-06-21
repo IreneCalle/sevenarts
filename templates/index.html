@@ -12,7 +12,7 @@
                 </h2>
             </div>
             <div class="card-body">
-                <p class="text-muted">Hi culture vulture! Lovely to see you here. Get fascinating articles about the seven classical arts delivered to your inbox with fresh discoveries every time.</p>
+                <p class="text-muted">Darling culture vulture! Ready to feast on the most intoxicating art discoveries? We serve up mind-bending cultural gems that'll make your inbox the envy of every aesthete.</p>
                 
                 <form method="POST" action="{{ url_for('subscribe') }}">
                     <div class="row">
@@ -22,13 +22,13 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">Name (Optional)</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Fellow art enthusiast">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your artistic alias">
                         </div>
                     </div>
                     
                     {% if art_forms %}
                     <div class="mb-3">
-                        <label class="form-label">Art Forms of Interest</label>
+                        <label class="form-label">Your Artistic Obsessions</label>
                         <div class="row">
                             {% for art_form in art_forms %}
                             <div class="col-md-4 mb-2">
@@ -46,7 +46,7 @@
                     {% endif %}
                     
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-heart me-2"></i>Join the Cultural Journey
+                        <i class="fas fa-fire me-2"></i>Ignite My Artistic Soul
                     </button>
                 </form>
             </div>
@@ -60,14 +60,14 @@
                 <div class="btn-group">
                     <form method="POST" action="{{ url_for('send_newsletter') }}" class="d-inline">
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-magic me-2"></i>Send Cultural Digest Now
+                            <i class="fas fa-rocket me-2"></i>Drop Cultural Bombs Now
                         </button>
                     </form>
                 </div>
             </div>
             <div class="card-body">
                 <p class="text-muted">
-                    Cultural digests are automatically sent daily at 8:00 AM with fresh discoveries from the art world. You can also send one manually above.
+                    Explosive cultural doses drop daily at 8:00 AM, each one more addictive than the last. Feeling impatient? Hit the button and get your fix now.
                 </p>
                 
                 {% if recent_newsletters %}
@@ -119,16 +119,16 @@
             <div class="card-body">
                 <ol class="list-unstyled">
                     <li class="mb-2">
-                        <i class="fas fa-palette text-primary me-2"></i>
-                        <strong>Discover:</strong> We explore the seven classical arts for fascinating content
+                        <i class="fas fa-search text-primary me-2"></i>
+                        <strong>Hunt:</strong> We prowl the seven classical arts for mind-blowing content
                     </li>
                     <li class="mb-2">
-                        <i class="fas fa-gem text-primary me-2"></i>
-                        <strong>Curate:</strong> Each digest features 3 unique articles from different art forms
+                        <i class="fas fa-fire text-primary me-2"></i>
+                        <strong>Curate:</strong> 3 scorching hot discoveries from different art forms every time
                     </li>
                     <li class="mb-2">
-                        <i class="fas fa-heart text-primary me-2"></i>
-                        <strong>Delight:</strong> Fresh cultural discoveries delivered with love to your inbox
+                        <i class="fas fa-bolt text-primary me-2"></i>
+                        <strong>Deliver:</strong> Pure artistic adrenaline straight to your inbox
                     </li>
                 </ol>
             </div>
