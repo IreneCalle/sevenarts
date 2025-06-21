@@ -135,3 +135,5 @@ The application follows a modular Flask architecture with the following key comp
 ## User Preferences
 
 Preferred communication style: Sexy, crispy copy with cultural edge. Think "culture vulture," "artistic addiction," "creative soul purr," and "artistic overload." Make it irresistible and slightly edgy.
+
+Design aesthetic: Art Deco styling with geometric patterns, symmetrical layouts, provocative typography (Cinzel for headings, Oswald for body), gold/bronze color scheme, and sleek angular designs. Think 1920s glamour meets modern sophistication.

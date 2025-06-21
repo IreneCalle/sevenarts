@@ -1,97 +1,412 @@
-/* Custom styles for News Curator */
+/* SevenArts - Art Deco Styling */
 
-.newsletter-preview {
-    background-color: var(--bs-gray-100);
-    border-radius: 0.5rem;
-    padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One:wght@400@display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+
+:root {
+    --art-deco-gold: #D4AF37;
+    --art-deco-bronze: #CD7F32;
+    --art-deco-black: #1a1a1a;
+    --art-deco-cream: #F5F5DC;
+    --art-deco-deep-blue: #191970;
+    --art-deco-silver: #C0C0C0;
+    --geometric-gradient: linear-gradient(135deg, #D4AF37 0%, #CD7F32 50%, #B8860B 100%);
+    --deco-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+    --deco-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+body {
+    font-family: 'Oswald', sans-serif;
+    background: var(--art-deco-black);
+    color: var(--art-deco-cream);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(205, 127, 50, 0.1) 0%, transparent 50%);
+}
+
+/* Art Deco Typography */
+.navbar-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: var(--geometric-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: var(--deco-text-shadow);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: var(--deco-text-shadow);
+}
+
+.card-title {
+    color: var(--art-deco-gold);
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--geometric-gradient);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+
+/* Art Deco Cards */
 .card {
-    border: none;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    transition: box-shadow 0.15s ease-in-out;
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(40, 40, 40, 0.95));
+    border: 2px solid var(--art-deco-gold);
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--deco-shadow);
+    transition: all 0.3s ease;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--geometric-gradient);
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    pointer-events: none;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
 }
 
 .card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+    border-color: var(--art-deco-bronze);
 }
 
-.list-group-item {
-    border: none;
-    border-bottom: 1px solid var(--bs-border-color);
-}
-
-.list-group-item:last-child {
+.card-header {
+    background: var(--geometric-gradient);
+    color: var(--art-deco-black);
     border-bottom: none;
-}
-
-.navbar-brand {
+    text-align: center;
+    position: relative;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
+.card-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: var(--art-deco-black);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+/* Art Deco Buttons */
 .btn {
-    border-radius: 0.375rem;
+    font-family: 'Oswald', sans-serif;
     font-weight: 500;
-}
-
-.alert {
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0;
+    padding: 12px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 }
 
+.btn-primary {
+    background: var(--geometric-gradient);
+    color: var(--art-deco-black);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #CD7F32 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #32CD32 0%, #228B22 50%, #006400 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #00FF00 0%, #32CD32 50%, #228B22 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(50, 205, 50, 0.6);
+}
+
+/* Art Deco Form Elements */
 .form-control, .form-select {
-    border-radius: 0.375rem;
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid var(--art-deco-silver);
+    border-radius: 0;
+    color: var(--art-deco-cream);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+    transition: all 0.3s ease;
 }
 
-.badge {
+.form-control:focus, .form-select:focus {
+    background: rgba(26, 26, 26, 0.9);
+    border-color: var(--art-deco-gold);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    color: var(--art-deco-cream);
+}
+
+.form-label {
+    font-family: 'Cinzel', serif;
     font-weight: 500;
+    color: var(--art-deco-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-/* Loading spinner */
-.spinner-border-sm {
-    width: 1rem;
-    height: 1rem;
+/* Art Deco Navigation */
+.navbar {
+    background: linear-gradient(90deg, var(--art-deco-black) 0%, rgba(26, 26, 26, 0.95) 50%, var(--art-deco-black) 100%);
+    border-bottom: 3px solid var(--art-deco-gold);
+    box-shadow: var(--deco-shadow);
 }
 
-/* Newsletter preview specific styles */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--geometric-gradient);
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+}
+
+.nav-link {
+    color: var(--art-deco-cream) !important;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--art-deco-gold) !important;
+    text-shadow: var(--deco-text-shadow);
+}
+
+/* Art Deco Newsletter Preview */
+.newsletter-preview {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(40, 40, 40, 0.9));
+    border: 2px solid var(--art-deco-gold);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.newsletter-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(212, 175, 55, 0.05) 2px,
+        rgba(212, 175, 55, 0.05) 4px
+    );
+    pointer-events: none;
+}
+
 .newsletter-preview .card {
-    border-left: 4px solid var(--bs-primary);
+    border-left: 6px solid var(--art-deco-gold);
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
 }
 
-.newsletter-preview img {
-    max-height: 150px;
-    object-fit: cover;
+/* Art Deco Badges */
+.badge {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: var(--geometric-gradient);
+    color: var(--art-deco-black);
+    border-radius: 0;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    text-transform: uppercase;
 }
 
-/* Responsive adjustments */
+/* Art Deco List Items */
+.list-group-item {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(40, 40, 40, 0.8));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 0;
+    color: var(--art-deco-cream);
+    margin-bottom: 8px;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(60, 60, 60, 0.9));
+    border-color: var(--art-deco-gold);
+    transform: translateX(5px);
+}
+
+/* Art Deco Footer */
+.footer, footer {
+    background: linear-gradient(90deg, var(--art-deco-black) 0%, rgba(26, 26, 26, 0.95) 50%, var(--art-deco-black) 100%);
+    border-top: 3px solid var(--art-deco-gold);
+    position: relative;
+}
+
+.footer::before, footer::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--geometric-gradient);
+    clip-path: polygon(2% 0, 98% 0, 100% 100%, 0 100%);
+}
+
+/* Art Deco Statistics */
+.text-primary {
+    background: var(--geometric-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    text-shadow: none;
+}
+
+/* Art Deco Animations */
+@keyframes deco-shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.card-title:hover::after {
+    background: linear-gradient(90deg, transparent, var(--art-deco-gold), transparent);
+    background-size: 200% 100%;
+    animation: deco-shimmer 2s infinite;
+}
+
+/* Art Deco Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--art-deco-black);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--geometric-gradient);
+    border-radius: 0;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #CD7F32 100%);
+}
+
+/* Art Deco Responsive */
 @media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
     .newsletter-preview {
         padding: 1rem;
     }
     
-    .newsletter-preview .card-body .row {
-        flex-direction: column;
+    .card::after {
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
     }
     
-    .newsletter-preview img {
-        margin-bottom: 1rem;
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }
 
-/* Custom scrollbar for better UX */
-::-webkit-scrollbar {
-    width: 8px;
+/* Art Deco Geometric Patterns */
+.geometric-bg {
+    position: relative;
+    overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--bs-gray-200);
+.geometric-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(45deg, transparent 45%, rgba(212, 175, 55, 0.1) 50%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, rgba(205, 127, 50, 0.1) 50%, transparent 55%);
+    background-size: 20px 20px;
+    pointer-events: none;
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--bs-gray-400);
-    border-radius: 4px;
+/* Art Deco Alerts */
+.alert {
+    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(40, 40, 40, 0.9));
+    border: 2px solid var(--art-deco-gold);
+    border-radius: 0;
+    color: var(--art-deco-cream);
+    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--bs-gray-500);
+.alert-success {
+    border-color: #32CD32;
+}
+
+.alert-danger {
+    border-color: #DC143C;
+}
+
+.alert-info {
+    border-color: var(--art-deco-deep-blue);
 }
