@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, jsonify
 from app import app, db
-from models import Subscriber, NewsletterSent, Topic
+from models import Subscriber, NewsletterSent, ArtForm
 from news_service import NewsService
 from email_service import EmailService
 import logging
@@ -12,33 +12,33 @@ email_service = EmailService()
 def index():
     subscribers_count = Subscriber.query.filter_by(active=True).count()
     recent_newsletters = NewsletterSent.query.order_by(NewsletterSent.sent_at.desc()).limit(5).all()
-    topics = Topic.query.filter_by(active=True).all()
+    art_forms = ArtForm.query.filter_by(active=True).all()
     
     return render_template('index.html', 
                          subscribers_count=subscribers_count,
                          recent_newsletters=recent_newsletters,
-                         topics=topics)
+                         art_forms=art_forms)
 
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
     email = request.form.get('email')
     name = request.form.get('name', '')
-    selected_topics = request.form.getlist('topics')
+    selected_art_forms = request.form.getlist('art_forms')
     
     if not email:
-        flash('Email is required!', 'error')
+        flash('Email is required, culture vulture!', 'error')
         return redirect(url_for('index'))
     
     # Check if subscriber already exists
     existing_subscriber = Subscriber.query.filter_by(email=email).first()
     if existing_subscriber:
-        existing_subscriber.topics = selected_topics
+        existing_subscriber.art_forms = selected_art_forms
         existing_subscriber.active = True
-        flash('Subscription updated successfully!', 'success')
+        flash('Welcome back! Your art preferences have been updated perfectly.', 'success')
     else:
-        subscriber = Subscriber(email=email, name=name, topics=selected_topics)
+        subscriber = Subscriber(email=email, name=name, art_forms=selected_art_forms)
         db.session.add(subscriber)
-        flash('Subscribed successfully!', 'success')
+        flash('Fantastic! You\'re now part of our cultured community.', 'success')
     
     db.session.commit()
     return redirect(url_for('index'))
@@ -58,32 +58,33 @@ def unsubscribe(email):
 @app.route('/settings')
 def settings():
     subscribers = Subscriber.query.filter_by(active=True).all()
-    topics = Topic.query.all()
-    return render_template('settings.html', subscribers=subscribers, topics=topics)
+    art_forms = ArtForm.query.all()
+    return render_template('settings.html', subscribers=subscribers, art_forms=art_forms)
 
-@app.route('/add_topic', methods=['POST'])
-def add_topic():
+@app.route('/add_art_form', methods=['POST'])
+def add_art_form():
     name = request.form.get('name')
+    description = request.form.get('description', '')
     keywords = request.form.get('keywords', '').split(',')
     keywords = [k.strip() for k in keywords if k.strip()]
     
     if not name:
-        flash('Topic name is required!', 'error')
+        flash('Art form name is required!', 'error')
         return redirect(url_for('settings'))
     
-    topic = Topic(name=name, keywords=keywords)
-    db.session.add(topic)
+    art_form = ArtForm(name=name, description=description, keywords=keywords)
+    db.session.add(art_form)
     db.session.commit()
-    flash('Topic added successfully!', 'success')
+    flash('Art form added beautifully!', 'success')
     
     return redirect(url_for('settings'))
 
-@app.route('/delete_topic/<int:topic_id>')
-def delete_topic(topic_id):
-    topic = Topic.query.get_or_404(topic_id)
-    topic.active = False
+@app.route('/delete_art_form/<int:art_form_id>')
+def delete_art_form(art_form_id):
+    art_form = ArtForm.query.get_or_404(art_form_id)
+    art_form.active = False
     db.session.commit()
-    flash('Topic deleted successfully!', 'info')
+    flash('Art form removed from collection!', 'info')
     return redirect(url_for('settings'))
 
 @app.route('/send_newsletter', methods=['POST'])
@@ -107,7 +108,7 @@ def send_newsletter():
         for subscriber in subscribers:
             try:
                 # Send email
-                subject = f"Your Daily News Digest - {articles[0]['published_date']}"
+                subject = f"Your SevenArts Cultural Digest - Fresh Discoveries"
                 email_service.send_newsletter(subscriber.email, subject, articles, subscriber.name)
                 
                 # Record the sent newsletter
@@ -131,7 +132,7 @@ def send_newsletter():
                 db.session.add(newsletter)
         
         db.session.commit()
-        flash(f'Newsletter sent to {success_count} subscribers!', 'success')
+        flash(f'Cultural digest sent to {success_count} art lovers!', 'success')
         
     except Exception as e:
         logging.error(f"Error sending newsletter: {str(e)}")

@@ -1,8 +1,8 @@
-# News Curator - Automated Newsletter System
+# SevenArts - Cultural Newsletter System
 
 ## Overview
 
-News Curator is a Flask-based web application that automates the creation and distribution of curated newsletters. The system fetches news articles from external APIs, allows users to subscribe with topic preferences, and automatically sends scheduled newsletters via email.
+SevenArts is a Flask-based web application that curates and distributes cultural content about the seven classical arts. The system fetches articles about art forms from external APIs, allows users to subscribe with art form preferences, and automatically sends scheduled cultural digests via email with fresh discoveries every time.
 
 ## System Architecture
 
@@ -17,12 +17,12 @@ The application follows a modular Flask architecture with the following key comp
 ### Database Design
 - **SQLite/PostgreSQL**: Flexible database backend with environment-based configuration
 - **Three main entities**:
-  - `Subscriber`: User information, email preferences, and topic subscriptions
-  - `NewsletterSent`: Tracking of sent newsletters and delivery status
-  - `Topic`: Configurable news categories with keyword filtering
+  - `Subscriber`: User information, email preferences, and art form subscriptions
+  - `NewsletterSent`: Tracking of sent cultural digests and delivery status
+  - `ArtForm`: Configurable art categories with keyword filtering and descriptions
 
 ### External Service Integration
-- **NewsAPI**: Third-party news aggregation service for article retrieval
+- **NewsAPI**: Third-party content aggregation service for cultural article retrieval
 - **SMTP Services**: Email delivery through configurable SMTP providers (Gmail by default)
 
 ## Key Components
@@ -34,57 +34,57 @@ The application follows a modular Flask architecture with the following key comp
 - Environment-based configuration management
 
 ### Data Models (`models.py`)
-- **Subscriber Model**: Email, name, topic preferences, subscription status
-- **NewsletterSent Model**: Newsletter delivery tracking with article content
-- **Topic Model**: Dynamic topic management with keyword-based filtering
+- **Subscriber Model**: Email, name, art form preferences, subscription status
+- **NewsletterSent Model**: Cultural digest delivery tracking with article content
+- **ArtForm Model**: Dynamic art form management with keyword-based filtering and descriptions
 
 ### News Service (`news_service.py`)
-- NewsAPI integration for article fetching
-- Topic-based article filtering and curation
+- NewsAPI integration for cultural article fetching
+- Art form-based article filtering and curation
 - Article quality assessment and formatting
-- Date-based article filtering (last 3 days)
+- Relevancy-based filtering for diverse, interesting content (no date restrictions)
 
 ### Email Service (`email_service.py`)
 - Multi-format email support (HTML and plain text)
-- Template-based newsletter generation
+- Template-based cultural digest generation
 - SMTP configuration and delivery
-- Subscriber-specific personalization
+- Subscriber-specific personalization with cultural theme
 
 ### Scheduler (`scheduler.py`)
 - Background task management using APScheduler
-- Configurable newsletter sending schedule
+- Configurable cultural digest sending schedule
 - Error handling and logging for automated tasks
 - Application context management for database operations
 
 ### Web Interface (`routes.py`)
 - Subscription management endpoints
-- Topic preference handling
-- Newsletter preview functionality
+- Art form preference handling
+- Cultural digest preview functionality
 - Administrative settings interface
 
 ## Data Flow
 
 1. **Subscription Process**:
-   - User submits subscription form with email and topic preferences
+   - User submits subscription form with email and art form preferences
    - System validates email and creates/updates subscriber record
-   - Topic preferences stored as JSON array in subscriber model
+   - Art form preferences stored as JSON array in subscriber model
 
 2. **Article Curation**:
    - Scheduler triggers article fetching based on configured intervals
-   - News service queries NewsAPI with topic-specific keywords
-   - Articles filtered for quality and relevance
-   - Curated content prepared for newsletter generation
+   - News service queries NewsAPI with art form-specific keywords
+   - Articles filtered for quality and cultural relevance
+   - Random selection of 3 art forms ensures variety in each digest
 
-3. **Newsletter Distribution**:
-   - Scheduler initiates newsletter sending process
+3. **Cultural Digest Distribution**:
+   - Scheduler initiates cultural digest sending process
    - System retrieves active subscribers and their preferences
-   - Personalized newsletters generated using HTML templates
+   - Personalized cultural digests generated using HTML templates
    - Emails sent via SMTP with delivery status tracking
 
 ## External Dependencies
 
 ### Required APIs
-- **NewsAPI**: News article aggregation (requires API key)
+- **NewsAPI**: Cultural content aggregation (requires API key)
 - **SMTP Server**: Email delivery service (Gmail, SendGrid, etc.)
 
 ### Python Packages
@@ -110,7 +110,7 @@ The application follows a modular Flask architecture with the following key comp
 
 ### Environment Variables
 - `DATABASE_URL`: Database connection string
-- `NEWS_API_KEY`: NewsAPI authentication
+- `NEWS_API_KEY`: NewsAPI authentication for cultural content
 - `SMTP_*`: Email server configuration
 - `SESSION_SECRET`: Flask session security
 
@@ -121,8 +121,17 @@ The application follows a modular Flask architecture with the following key comp
 - External service dependencies may require rate limiting
 
 ## Changelog
-- June 21, 2025. Initial setup
+- June 21, 2025. Initial setup as News Curator
+- June 21, 2025. Transformed to SevenArts cultural newsletter system:
+  - Renamed application from News Curator to SevenArts
+  - Changed focus from general news to seven classical arts
+  - Updated database schema: topics → art_forms
+  - Modified content curation to focus on cultural articles
+  - Added art form descriptions and cultural theming
+  - Updated UI with cultural messaging and "culture vulture" theme
+  - Removed date restrictions for more diverse, interesting content
+  - Added random selection of 3 art forms per digest for variety
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+Preferred communication style: Simple, everyday language with cultural flair ("Hi culture vulture! Lovely to see you again").

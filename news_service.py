@@ -2,31 +2,25 @@ import requests
 import os
 from datetime import datetime, timedelta
 import logging
-from models import Topic
 
 class NewsService:
     def __init__(self):
         self.api_key = os.environ.get('NEWS_API_KEY', 'demo_key')
         self.base_url = 'https://newsapi.org/v2'
         
-    def get_articles_by_topic(self, topic_name, keywords=None, limit=5):
-        """Fetch articles for a specific topic"""
+    def get_articles_by_art_form(self, art_form_name, keywords=None, limit=5):
+        """Fetch articles for a specific art form"""
         try:
-            # Use keywords if provided, otherwise use topic name
-            query = ' OR '.join(keywords) if keywords else topic_name
+            # Use keywords if provided, otherwise use art form name
+            query = ' OR '.join(keywords) if keywords else art_form_name
             
-            # Calculate date range (last 3 days)
-            to_date = datetime.now()
-            from_date = to_date - timedelta(days=3)
-            
+            # Remove date restrictions for more interesting, diverse content
             params = {
                 'q': query,
                 'apiKey': self.api_key,
                 'language': 'en',
-                'sortBy': 'popularity',
-                'pageSize': limit,
-                'from': from_date.strftime('%Y-%m-%d'),
-                'to': to_date.strftime('%Y-%m-%d')
+                'sortBy': 'relevancy',  # Changed to relevancy for better cultural content
+                'pageSize': limit * 2  # Get more results to filter better
             }
             
             response = requests.get(f'{self.base_url}/everything', params=params)
@@ -39,41 +33,53 @@ class NewsService:
             formatted_articles = []
             for article in articles:
                 if self._is_quality_article(article):
-                    formatted_articles.append(self._format_article(article, topic_name))
+                    formatted_articles.append(self._format_article(article, art_form_name))
             
             return formatted_articles[:limit]
             
         except Exception as e:
-            logging.error(f"Error fetching articles for topic {topic_name}: {str(e)}")
+            logging.error(f"Error fetching articles for art form {art_form_name}: {str(e)}")
             return []
     
     def get_curated_articles(self):
-        """Get curated articles from different topics"""
+        """Get curated articles from different art forms"""
         from app import app, db
+        from models import ArtForm
         
         with app.app_context():
-            topics = Topic.query.filter_by(active=True).all()
+            art_forms = ArtForm.query.filter_by(active=True).all()
             
-            if not topics:
-                # Default topics if none configured
-                default_topics = [
-                    {'name': 'Technology', 'keywords': ['technology', 'AI', 'software', 'innovation']},
-                    {'name': 'Science', 'keywords': ['science', 'research', 'discovery', 'health']},
-                    {'name': 'Business', 'keywords': ['business', 'economy', 'finance', 'startup']}
+            if not art_forms:
+                # The seven classic art forms if none configured
+                default_art_forms = [
+                    {'name': 'Architecture', 'keywords': ['architecture', 'building design', 'urban planning', 'architectural']},
+                    {'name': 'Sculpture', 'keywords': ['sculpture', 'sculptural', 'installation art', 'public art']},
+                    {'name': 'Painting', 'keywords': ['painting', 'visual art', 'contemporary art', 'fine art']},
+                    {'name': 'Music', 'keywords': ['music', 'classical music', 'contemporary music', 'composer']},
+                    {'name': 'Poetry', 'keywords': ['poetry', 'literature', 'poet', 'literary']},
+                    {'name': 'Dance', 'keywords': ['dance', 'ballet', 'contemporary dance', 'choreography']},
+                    {'name': 'Theater', 'keywords': ['theater', 'theatre', 'drama', 'performance art']}
                 ]
                 
                 curated_articles = []
-                for topic_data in default_topics:
-                    articles = self.get_articles_by_topic(topic_data['name'], topic_data['keywords'], 1)
+                # Select 3 random art forms for variety
+                import random
+                selected_forms = random.sample(default_art_forms, 3)
+                
+                for art_form_data in selected_forms:
+                    articles = self.get_articles_by_art_form(art_form_data['name'], art_form_data['keywords'], 1)
                     if articles:
                         curated_articles.extend(articles)
                 
                 return curated_articles[:3]
             
-            # Get one article from each topic
+            # Get one article from each art form (randomly select 3 for variety)
+            import random
+            selected_art_forms = random.sample(list(art_forms), min(3, len(art_forms)))
+            
             curated_articles = []
-            for topic in topics[:3]:  # Limit to 3 topics
-                articles = self.get_articles_by_topic(topic.name, topic.keywords, 1)
+            for art_form in selected_art_forms:
+                articles = self.get_articles_by_art_form(art_form.name, art_form.keywords, 1)
                 if articles:
                     curated_articles.extend(articles)
             
@@ -95,24 +101,25 @@ class NewsService:
         
         return True
     
-    def _format_article(self, article, topic):
+    def _format_article(self, article, art_form):
         """Format article data for email template"""
         published_at = article.get('publishedAt', '')
         if published_at:
             try:
                 published_date = datetime.fromisoformat(published_at.replace('Z', '+00:00'))
-                formatted_date = published_date.strftime('%B %d, %Y at %I:%M %p UTC')
+                formatted_date = published_date.strftime('%B %d, %Y')
             except:
-                formatted_date = 'Recently'
+                formatted_date = 'Cultural Discovery'
         else:
-            formatted_date = 'Recently'
+            formatted_date = 'Cultural Discovery'
         
         return {
             'title': article.get('title', 'No title'),
             'description': article.get('description', 'No description available'),
             'url': article.get('url', '#'),
-            'source': article.get('source', {}).get('name', 'Unknown Source'),
+            'source': article.get('source', {}).get('name', 'Cultural Source'),
             'published_date': formatted_date,
-            'topic': topic,
+            'art_form': art_form,
+            'topic': art_form,  # Keep for backward compatibility
             'image_url': article.get('urlToImage', '')
         }

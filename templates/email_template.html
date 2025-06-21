@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Daily News Digest</title>
+    <title>Your SevenArts Cultural Digest</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -130,28 +130,28 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📰 Your Daily News Digest</h1>
-            <p>Curated articles from reliable sources</p>
+            <h1>🎨 Your SevenArts Cultural Digest</h1>
+            <p>Curated discoveries from the world of arts</p>
         </div>
         
         <div class="content">
             {% if subscriber_name %}
             <div class="greeting">
-                Hello {{ subscriber_name }}! 👋
+                Hi {{ subscriber_name }}, culture vulture! 🎭
             </div>
             {% else %}
             <div class="greeting">
-                Hello! 👋
+                Hi culture vulture! 🎭
             </div>
             {% endif %}
             
             <p style="margin-bottom: 30px; color: #495057;">
-                Here are today's top 3 curated articles from different topics, carefully selected from reliable news sources:
+                Lovely to see you again! Here are 3 fascinating cultural discoveries from different art forms, carefully curated just for you:
             </p>
             
             {% for article in articles %}
             <div class="article">
-                <div class="article-topic">{{ article.topic }}</div>
+                <div class="article-topic">{{ article.art_form or article.topic }}</div>
                 <div class="article-title">{{ article.title }}</div>
                 <div class="article-description">{{ article.description }}</div>
                 <div class="article-meta">
@@ -164,15 +164,15 @@
         
         <div class="footer">
             <p>
-                ❤️ Thanks for reading! Stay informed and have a great day.
+                💖 Thanks for reading! Keep exploring and stay inspired.
             </p>
             <p>
                 <a href="http://localhost:5000">Manage your subscription</a> • 
                 <a href="{{ unsubscribe_url }}">Unsubscribe</a>
             </p>
             <div class="unsubscribe">
-                You're receiving this because you subscribed to our newsletter.
-                <br>News Curator • Curated news delivered daily
+                You're receiving this because you joined our cultural community.
+                <br>SevenArts • Cultural discoveries delivered with love
             </div>
         </div>
     </div>

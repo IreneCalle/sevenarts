@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}News Curator - Home{% endblock %}
+{% block title %}SevenArts - Home{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -8,11 +8,11 @@
         <div class="card mb-4">
             <div class="card-header">
                 <h2 class="card-title mb-0">
-                    <i class="fas fa-envelope me-2"></i>Subscribe to Newsletter
+                    <i class="fas fa-heart me-2"></i>Join Our Cultural Community
                 </h2>
             </div>
             <div class="card-body">
-                <p class="text-muted">Get curated news articles from reliable sources delivered to your inbox daily.</p>
+                <p class="text-muted">Hi culture vulture! Lovely to see you here. Get fascinating articles about the seven classical arts delivered to your inbox with fresh discoveries every time.</p>
                 
                 <form method="POST" action="{{ url_for('subscribe') }}">
                     <div class="row">
@@ -22,21 +22,21 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">Name (Optional)</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Fellow art enthusiast">
                         </div>
                     </div>
                     
-                    {% if topics %}
+                    {% if art_forms %}
                     <div class="mb-3">
-                        <label class="form-label">Topics of Interest</label>
+                        <label class="form-label">Art Forms of Interest</label>
                         <div class="row">
-                            {% for topic in topics %}
+                            {% for art_form in art_forms %}
                             <div class="col-md-4 mb-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ topic.name }}" 
-                                           id="topic{{ topic.id }}" name="topics" checked>
-                                    <label class="form-check-label" for="topic{{ topic.id }}">
-                                        {{ topic.name }}
+                                    <input class="form-check-input" type="checkbox" value="{{ art_form.name }}" 
+                                           id="artform{{ art_form.id }}" name="art_forms" checked>
+                                    <label class="form-check-label" for="artform{{ art_form.id }}">
+                                        {{ art_form.name }}
                                     </label>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                     {% endif %}
                     
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Subscribe
+                        <i class="fas fa-heart me-2"></i>Join the Cultural Journey
                     </button>
                 </form>
             </div>
@@ -55,23 +55,23 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h3 class="card-title mb-0">
-                    <i class="fas fa-paper-plane me-2"></i>Newsletter Management
+                    <i class="fas fa-paint-brush me-2"></i>Cultural Digest Management
                 </h3>
                 <div class="btn-group">
                     <form method="POST" action="{{ url_for('send_newsletter') }}" class="d-inline">
                         <button type="submit" class="btn btn-success">
-                            <i class="fas fa-send me-2"></i>Send Newsletter Now
+                            <i class="fas fa-magic me-2"></i>Send Cultural Digest Now
                         </button>
                     </form>
                 </div>
             </div>
             <div class="card-body">
                 <p class="text-muted">
-                    Newsletters are automatically sent daily at 8:00 AM. You can also send one manually using the button above.
+                    Cultural digests are automatically sent daily at 8:00 AM with fresh discoveries from the art world. You can also send one manually above.
                 </p>
                 
                 {% if recent_newsletters %}
-                <h5>Recent Newsletters</h5>
+                <h5>Recent Cultural Digests</h5>
                 <div class="list-group">
                     {% for newsletter in recent_newsletters %}
                     <div class="list-group-item">
@@ -89,7 +89,7 @@
                     {% endfor %}
                 </div>
                 {% else %}
-                <p class="text-muted">No newsletters sent yet.</p>
+                <p class="text-muted">No cultural digests sent yet.</p>
                 {% endif %}
             </div>
         </div>
@@ -105,7 +105,7 @@
             <div class="card-body">
                 <div class="text-center">
                     <h2 class="text-primary">{{ subscribers_count }}</h2>
-                    <p class="text-muted">Active Subscribers</p>
+                    <p class="text-muted">Culture Vultures</p>
                 </div>
             </div>
         </div>
@@ -119,16 +119,16 @@
             <div class="card-body">
                 <ol class="list-unstyled">
                     <li class="mb-2">
-                        <i class="fas fa-search text-primary me-2"></i>
-                        <strong>Curate:</strong> We fetch the latest articles from reliable news sources
+                        <i class="fas fa-palette text-primary me-2"></i>
+                        <strong>Discover:</strong> We explore the seven classical arts for fascinating content
                     </li>
                     <li class="mb-2">
-                        <i class="fas fa-filter text-primary me-2"></i>
-                        <strong>Filter:</strong> Articles are filtered by quality and categorized by topics
+                        <i class="fas fa-gem text-primary me-2"></i>
+                        <strong>Curate:</strong> Each digest features 3 unique articles from different art forms
                     </li>
                     <li class="mb-2">
-                        <i class="fas fa-envelope text-primary me-2"></i>
-                        <strong>Deliver:</strong> 3 best articles from different topics are sent to your inbox
+                        <i class="fas fa-heart text-primary me-2"></i>
+                        <strong>Delight:</strong> Fresh cultural discoveries delivered with love to your inbox
                     </li>
                 </ol>
             </div>

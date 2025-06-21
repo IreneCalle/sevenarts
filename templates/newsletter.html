@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Newsletter Preview{% endblock %}
+{% block title %}Cultural Digest Preview{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -8,14 +8,14 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title mb-0">
-                    <i class="fas fa-eye me-2"></i>Newsletter Preview
+                    <i class="fas fa-eye me-2"></i>Cultural Digest Preview
                 </h2>
             </div>
             <div class="card-body">
                 {% if articles %}
                 <div class="newsletter-preview">
-                    <h3 class="text-center mb-4">Your Daily News Digest</h3>
-                    <p class="text-center text-muted mb-4">{{ articles[0]['published_date'] }}</p>
+                    <h3 class="text-center mb-4">Your SevenArts Cultural Digest</h3>
+                    <p class="text-center text-muted mb-4">Fresh cultural discoveries just for you</p>
                     
                     {% for article in articles %}
                     <div class="card mb-4">
@@ -30,7 +30,7 @@
                                 {% else %}
                                 <div class="col-12">
                                 {% endif %}
-                                    <span class="badge bg-primary mb-2">{{ article.topic }}</span>
+                                    <span class="badge bg-primary mb-2">{{ article.art_form or article.topic }}</span>
                                     <h4 class="card-title">{{ article.title }}</h4>
                                     <p class="card-text">{{ article.description }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
@@ -60,8 +60,8 @@
                 {% else %}
                 <div class="text-center py-5">
                     <i class="fas fa-exclamation-triangle fa-3x text-warning mb-3"></i>
-                    <h4>No Articles Available</h4>
-                    <p class="text-muted">Unable to fetch articles at this time. Please check your News API configuration.</p>
+                    <h4>No Cultural Content Available</h4>
+                    <p class="text-muted">Unable to fetch cultural articles at this time. Please check your API configuration.</p>
                     <a href="{{ url_for('settings') }}" class="btn btn-primary">
                         <i class="fas fa-cog me-2"></i>Check Settings
                     </a>

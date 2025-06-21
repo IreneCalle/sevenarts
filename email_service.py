@@ -12,7 +12,7 @@ class EmailService:
         self.smtp_username = os.environ.get('SMTP_USERNAME', 'your-email@gmail.com')
         self.smtp_password = os.environ.get('SMTP_PASSWORD', 'your-app-password')
         self.from_email = os.environ.get('FROM_EMAIL', self.smtp_username)
-        self.from_name = os.environ.get('FROM_NAME', 'News Curator')
+        self.from_name = os.environ.get('FROM_NAME', 'SevenArts')
     
     def send_newsletter(self, to_email, subject, articles, subscriber_name=None):
         """Send newsletter email to a subscriber"""
