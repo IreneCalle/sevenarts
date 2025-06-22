@@ -2,7 +2,6 @@
 
 A beautiful, modern web application that curates and delivers cultural content about the seven classical arts through personalized email newsletters.
 
-![SevenArts Preview](https://via.placeholder.com/800x400/FF8C42/FFFFFF?text=SevenArts+Cultural+Newsletter)
 
 ## ✨ Features
 
