@@ -1,78 +1,94 @@
-/* SevenArts - Art Deco Styling */
+/* SevenArts - Modern Watercolor Styling */
 
-@import url('https://fonts.googleapis.com/css2?family=Poiret+One:wght@400@display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --art-deco-gold: #D4AF37;
-    --art-deco-bronze: #CD7F32;
-    --art-deco-black: #1a1a1a;
-    --art-deco-cream: #F5F5DC;
-    --art-deco-deep-blue: #191970;
-    --art-deco-silver: #C0C0C0;
-    --geometric-gradient: linear-gradient(135deg, #D4AF37 0%, #CD7F32 50%, #B8860B 100%);
-    --deco-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
-    --deco-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    --tangerine: #FF8C42;
+    --tangerine-light: #FFB07A;
+    --tangerine-soft: #FFF4ED;
+    --lush-green: #2D5A3D;
+    --lush-green-light: #4A7C59;
+    --lush-green-soft: #E8F5E8;
+    --sage-green: #87A96B;
+    --coral-pink: #FFB3BA;
+    --soft-cream: #FEFCF3;
+    --warm-white: #FFFEF7;
+    --gentle-gray: #F7F7F7;
+    --text-dark: #2C3E2D;
+    --text-medium: #6B7B6E;
+    --text-light: #9CA89F;
+    
+    --watercolor-gradient: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, rgba(45, 90, 61, 0.1) 100%);
+    --nature-shadow: 0 4px 20px rgba(45, 90, 61, 0.08);
+    --soft-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    --watercolor-blur: blur(40px);
 }
 
 body {
-    font-family: 'Oswald', sans-serif;
-    background: var(--art-deco-black);
-    color: var(--art-deco-cream);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    line-height: 1.6;
     background-image: 
-        radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(205, 127, 50, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(255, 140, 66, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(45, 90, 61, 0.06) 0%, transparent 60%),
+        radial-gradient(circle at 60% 80%, rgba(135, 169, 107, 0.05) 0%, transparent 60%);
+    background-attachment: fixed;
 }
 
-/* Art Deco Typography */
+/* Modern Typography */
 .navbar-brand {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 2rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    background: var(--geometric-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: var(--deco-text-shadow);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    color: var(--lush-green);
+    position: relative;
+}
+
+.navbar-brand::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--tangerine), var(--sage-green));
+    border-radius: 1px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: var(--deco-text-shadow);
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+    line-height: 1.3;
 }
 
 .card-title {
-    color: var(--art-deco-gold);
-    position: relative;
+    color: var(--lush-green);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0;
 }
 
-.card-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: var(--geometric-gradient);
-    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+.card-title i {
+    color: var(--tangerine);
+    margin-right: 8px;
 }
 
-/* Art Deco Cards */
+/* Modern Watercolor Cards */
 .card {
-    background: linear-gradient(145deg, rgba(26, 26, 26, 0.95), rgba(40, 40, 40, 0.95));
-    border: 2px solid var(--art-deco-gold);
-    border-radius: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 16px;
     position: relative;
     overflow: hidden;
-    box-shadow: var(--deco-shadow);
-    transition: all 0.3s ease;
+    box-shadow: var(--soft-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
 }
 
 .card::before {
@@ -81,37 +97,22 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--geometric-gradient);
-    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
-}
-
-.card::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    pointer-events: none;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    height: 3px;
+    background: linear-gradient(90deg, var(--tangerine), var(--sage-green), var(--lush-green));
+    border-radius: 16px 16px 0 0;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
-    border-color: var(--art-deco-bronze);
+    transform: translateY(-2px);
+    box-shadow: var(--nature-shadow);
 }
 
 .card-header {
-    background: var(--geometric-gradient);
-    color: var(--art-deco-black);
-    border-bottom: none;
-    text-align: center;
+    background: linear-gradient(135deg, var(--tangerine-soft), var(--lush-green-soft));
+    border-bottom: 1px solid rgba(45, 90, 61, 0.1);
+    border-radius: 16px 16px 0 0 !important;
+    padding: 1.25rem;
     position: relative;
-    font-weight: 600;
-    letter-spacing: 1px;
 }
 
 .card-header::after {
@@ -120,257 +121,253 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
+    width: 40px;
     height: 2px;
-    background: var(--art-deco-black);
-    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+    background: linear-gradient(90deg, var(--tangerine), var(--sage-green));
+    border-radius: 1px;
 }
 
-/* Art Deco Buttons */
+/* Modern Organic Buttons */
 .btn {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
     border: none;
-    border-radius: 0;
-    padding: 12px 30px;
+    border-radius: 12px;
+    padding: 12px 24px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: -0.2px;
 }
 
 .btn-primary {
-    background: var(--geometric-gradient);
-    color: var(--art-deco-black);
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, var(--tangerine), var(--tangerine-light));
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 140, 66, 0.25);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #CD7F32 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    background: linear-gradient(135deg, var(--tangerine-light), var(--tangerine));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.35);
+    color: white;
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #32CD32 0%, #228B22 50%, #006400 100%);
+    background: linear-gradient(135deg, var(--lush-green), var(--lush-green-light));
     color: white;
-    box-shadow: 0 4px 15px rgba(50, 205, 50, 0.4);
+    box-shadow: 0 4px 12px rgba(45, 90, 61, 0.25);
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, #00FF00 0%, #32CD32 50%, #228B22 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(50, 205, 50, 0.6);
+    background: linear-gradient(135deg, var(--lush-green-light), var(--lush-green));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(45, 90, 61, 0.35);
+    color: white;
 }
 
-/* Art Deco Form Elements */
+/* Natural Form Elements */
 .form-control, .form-select {
-    background: rgba(26, 26, 26, 0.8);
-    border: 2px solid var(--art-deco-silver);
-    border-radius: 0;
-    color: var(--art-deco-cream);
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 1px;
-    clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(45, 90, 61, 0.15);
+    border-radius: 12px;
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    padding: 12px 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
 }
 
 .form-control:focus, .form-select:focus {
-    background: rgba(26, 26, 26, 0.9);
-    border-color: var(--art-deco-gold);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-    color: var(--art-deco-cream);
+    background: rgba(255, 255, 255, 0.95);
+    border-color: var(--tangerine);
+    box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.1);
+    color: var(--text-dark);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--text-light);
+    font-weight: 400;
 }
 
 .form-label {
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    color: var(--art-deco-gold);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    color: var(--lush-green);
     font-size: 0.9rem;
+    margin-bottom: 8px;
 }
 
-/* Art Deco Navigation */
+/* Modern Natural Navigation */
 .navbar {
-    background: linear-gradient(90deg, var(--art-deco-black) 0%, rgba(26, 26, 26, 0.95) 50%, var(--art-deco-black) 100%);
-    border-bottom: 3px solid var(--art-deco-gold);
-    box-shadow: var(--deco-shadow);
-}
-
-.navbar::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--geometric-gradient);
-    clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(45, 90, 61, 0.1);
+    box-shadow: var(--soft-shadow);
+    padding: 1rem 0;
 }
 
 .nav-link {
-    color: var(--art-deco-cream) !important;
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    color: var(--text-medium) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 8px;
+    padding: 8px 16px !important;
+    margin: 0 4px;
 }
 
 .nav-link:hover {
-    color: var(--art-deco-gold) !important;
-    text-shadow: var(--deco-text-shadow);
+    color: var(--lush-green) !important;
+    background: rgba(45, 90, 61, 0.05);
 }
 
-/* Art Deco Newsletter Preview */
+/* Organic Newsletter Preview */
 .newsletter-preview {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(40, 40, 40, 0.9));
-    border: 2px solid var(--art-deco-gold);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 245, 232, 0.6));
+    border: 1px solid rgba(45, 90, 61, 0.1);
+    border-radius: 20px;
     padding: 2rem;
     position: relative;
     overflow: hidden;
+    backdrop-filter: blur(10px);
 }
 
 .newsletter-preview::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent 0px,
-        transparent 2px,
-        rgba(212, 175, 55, 0.05) 2px,
-        rgba(212, 175, 55, 0.05) 4px
-    );
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.03) 0%, transparent 70%);
+    animation: gentle-float 20s ease-in-out infinite;
     pointer-events: none;
 }
 
+@keyframes gentle-float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-20px, -20px) rotate(180deg); }
+}
+
 .newsletter-preview .card {
-    border-left: 6px solid var(--art-deco-gold);
-    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+    border-left: 4px solid var(--tangerine);
+    border-radius: 12px;
 }
 
-/* Art Deco Badges */
+/* Natural Badges */
 .badge {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    letter-spacing: 1px;
-    background: var(--geometric-gradient);
-    color: var(--art-deco-black);
-    border-radius: 0;
-    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--tangerine-light), var(--sage-green));
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
 }
 
-/* Art Deco List Items */
+/* Organic List Items */
 .list-group-item {
-    background: linear-gradient(145deg, rgba(26, 26, 26, 0.8), rgba(40, 40, 40, 0.8));
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 0;
-    color: var(--art-deco-cream);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(45, 90, 61, 0.1);
+    border-radius: 12px;
+    color: var(--text-dark);
     margin-bottom: 8px;
-    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
 }
 
 .list-group-item:hover {
-    background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(60, 60, 60, 0.9));
-    border-color: var(--art-deco-gold);
-    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--tangerine);
+    transform: translateY(-1px);
+    box-shadow: var(--soft-shadow);
 }
 
-/* Art Deco Footer */
+/* Natural Footer */
 .footer, footer {
-    background: linear-gradient(90deg, var(--art-deco-black) 0%, rgba(26, 26, 26, 0.95) 50%, var(--art-deco-black) 100%);
-    border-top: 3px solid var(--art-deco-gold);
+    background: linear-gradient(135deg, rgba(45, 90, 61, 0.05), rgba(255, 140, 66, 0.03));
+    border-top: 1px solid rgba(45, 90, 61, 0.1);
     position: relative;
+    color: var(--text-medium);
 }
 
-.footer::before, footer::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--geometric-gradient);
-    clip-path: polygon(2% 0, 98% 0, 100% 100%, 0 100%);
-}
-
-/* Art Deco Statistics */
+/* Natural Statistics */
 .text-primary {
-    background: var(--geometric-gradient);
+    background: linear-gradient(135deg, var(--tangerine), var(--lush-green));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-family: 'Cinzel', serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 700;
-    text-shadow: none;
 }
 
-/* Art Deco Animations */
-@keyframes deco-shimmer {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
+/* Natural Animations */
+@keyframes watercolor-flow {
+    0%, 100% { 
+        background-position: 0% 50%;
+        opacity: 0.6;
+    }
+    50% { 
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
 }
 
-.card-title:hover::after {
-    background: linear-gradient(90deg, transparent, var(--art-deco-gold), transparent);
+.card:hover::before {
+    background: linear-gradient(270deg, var(--tangerine), var(--sage-green), var(--lush-green));
     background-size: 200% 100%;
-    animation: deco-shimmer 2s infinite;
+    animation: watercolor-flow 3s ease-in-out infinite;
 }
 
-/* Art Deco Scrollbar */
+/* Natural Scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--art-deco-black);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(45, 90, 61, 0.05);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--geometric-gradient);
-    border-radius: 0;
-    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+    background: linear-gradient(135deg, var(--tangerine), var(--lush-green));
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #CD7F32 100%);
+    background: linear-gradient(135deg, var(--tangerine-light), var(--lush-green-light));
 }
 
-/* Art Deco Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
     .navbar-brand {
-        font-size: 1.5rem;
-        letter-spacing: 2px;
+        font-size: 1.3rem;
     }
     
     .newsletter-preview {
-        padding: 1rem;
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
     }
     
-    .card::after {
-        top: 5px;
-        left: 5px;
-        right: 5px;
-        bottom: 5px;
+    .card {
+        border-radius: 12px;
     }
     
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+        border-radius: 10px;
+    }
+    
+    .form-control, .form-select {
+        border-radius: 10px;
     }
 }
 
-/* Art Deco Geometric Patterns */
+/* Organic Background Patterns */
 .geometric-bg {
     position: relative;
     overflow: hidden;
@@ -384,29 +381,112 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     bottom: 0;
     background-image: 
-        linear-gradient(45deg, transparent 45%, rgba(212, 175, 55, 0.1) 50%, transparent 55%),
-        linear-gradient(-45deg, transparent 45%, rgba(205, 127, 50, 0.1) 50%, transparent 55%);
-    background-size: 20px 20px;
+        radial-gradient(circle at 30% 40%, rgba(255, 140, 66, 0.03) 0%, transparent 60%),
+        radial-gradient(circle at 70% 20%, rgba(45, 90, 61, 0.02) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(135, 169, 107, 0.025) 0%, transparent 60%);
+    animation: gentle-shift 30s ease-in-out infinite;
     pointer-events: none;
 }
 
-/* Art Deco Alerts */
+@keyframes gentle-shift {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-10px, 10px); }
+    66% { transform: translate(10px, -5px); }
+}
+
+/* Natural Alerts */
 .alert {
-    background: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(40, 40, 40, 0.9));
-    border: 2px solid var(--art-deco-gold);
-    border-radius: 0;
-    color: var(--art-deco-cream);
-    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(45, 90, 61, 0.2);
+    border-radius: 12px;
+    color: var(--text-dark);
+    backdrop-filter: blur(10px);
 }
 
 .alert-success {
-    border-color: #32CD32;
+    background: rgba(45, 90, 61, 0.05);
+    border-color: var(--lush-green);
+    color: var(--lush-green);
 }
 
 .alert-danger {
-    border-color: #DC143C;
+    background: rgba(220, 53, 69, 0.05);
+    border-color: #dc3545;
+    color: #dc3545;
 }
 
 .alert-info {
-    border-color: var(--art-deco-deep-blue);
+    background: rgba(255, 140, 66, 0.05);
+    border-color: var(--tangerine);
+    color: var(--tangerine);
+}
+
+/* Form Check Elements */
+.form-check {
+    margin-bottom: 12px;
+}
+
+.form-check-input {
+    border: 2px solid rgba(45, 90, 61, 0.3);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-check-input:checked {
+    background-color: var(--tangerine);
+    border-color: var(--tangerine);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.1);
+    border-color: var(--tangerine);
+}
+
+.form-check-label {
+    color: var(--text-dark);
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+/* Text Colors */
+.text-muted {
+    color: var(--text-medium) !important;
+}
+
+/* Additional organic touches */
+p {
+    color: var(--text-medium);
+}
+
+small {
+    color: var(--text-light);
+}
+
+/* Watercolor effect for special elements */
+.watercolor-accent {
+    position: relative;
+    overflow: hidden;
+}
+
+.watercolor-accent::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.1) 0%, transparent 70%);
+    animation: watercolor-pulse 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes watercolor-pulse {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: scale(1.1) rotate(180deg);
+        opacity: 0.6;
+    }
 }
